@@ -28,8 +28,10 @@ function getHumanChoice() {
 
 function playGame(humanChoice, computerChoice) {
     let roundResults = document.querySelector('.round-results');
+    let playerScoreDisplay = document.querySelector('#player-score');
+    let compScoreDisplay = document.querySelector('#computer-score');
+
     function playRound(humanChoice, computerChoice) {
-        console.log(`You picked: ${humanChoice}. Computer picked: ${computerChoice}`);
         let _humanChoice = humanChoice.toLowerCase();
         
         if (_humanChoice === computerChoice) {
@@ -43,13 +45,21 @@ function playGame(humanChoice, computerChoice) {
             ) {
                 roundResults.textContent =  'You win this round!';
                 humanScore++;
+                playerScoreDisplay.textContent = String(humanScore);
             } else {
                 roundResults.textContent = 'You lose this round!';
                 compScore++
+                compScoreDisplay.textContent = String(compScore);
             }
     }
 
     playRound(humanChoice, computerChoice);
+
+    if (humanScore === 5) {
+        alert('You won!!!');
+    } else if (compScore === 5) {
+        alert('You lost!!!');
+    }
 }
 
 const buttons = document.querySelectorAll('button');

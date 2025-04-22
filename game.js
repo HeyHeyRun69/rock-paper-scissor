@@ -23,13 +23,14 @@ function getHumanChoice() {
     return choice;
 }
 
-function playGame() {
+function playGame(humanChoice, computerChoice) {
     let humanScore = 0;
     let compScore = 0;
 
     function playRound(humanChoice, computerChoice) {
+        console.log(`You picked: ${humanChoice}. Computer picked: ${computerChoice}`);
         let _humanChoice = humanChoice.toLowerCase();
-
+        
         if (_humanChoice === computerChoice) {
             console.log('Tie!');
         } else
@@ -47,15 +48,12 @@ function playGame() {
             }
     }
 
-    for (let i = 0; i < 5; i++) {
-        let human = getComputerChoice();
-        let comp = getHumanChoice();
-        playRound(human, comp);
-    }
-
-    if (humanScore > compScore) {
-        console.log('Human wins!');
-    } else console.log('Computer wins!');
+    playRound(humanChoice, computerChoice);
 }
 
-playGame();
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        playGame(e.target.id, getComputerChoice());
+    })
+})

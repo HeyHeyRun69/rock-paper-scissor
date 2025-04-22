@@ -1,3 +1,6 @@
+let humanScore = 0;
+let compScore = 0;
+
 function getComputerChoice() {
     let str1 = 'rock';
     let str2 = 'paper';
@@ -24,15 +27,13 @@ function getHumanChoice() {
 }
 
 function playGame(humanChoice, computerChoice) {
-    let humanScore = 0;
-    let compScore = 0;
-
+    let roundResults = document.querySelector('.round-results');
     function playRound(humanChoice, computerChoice) {
         console.log(`You picked: ${humanChoice}. Computer picked: ${computerChoice}`);
         let _humanChoice = humanChoice.toLowerCase();
         
         if (_humanChoice === computerChoice) {
-            console.log('Tie!');
+            roundResults.textContent = 'Tie!';
         } else
             if (_humanChoice === 'scissors' && computerChoice === 'paper'
                 ||
@@ -40,10 +41,10 @@ function playGame(humanChoice, computerChoice) {
                 ||
                 _humanChoice === 'rock' && computerChoice === 'scissors'
             ) {
-                console.log('You win this round!');
+                roundResults.textContent =  'You win this round!';
                 humanScore++;
             } else {
-                console.log('You lose this round!');
+                roundResults.textContent = 'You lose this round!';
                 compScore++
             }
     }
